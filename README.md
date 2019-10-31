@@ -3,6 +3,8 @@
 [![Build Status](https://dev.azure.com/ofpinewood/Of%20Pine%20Wood/_apis/build/status/ofpinewood.opw?branchName=master)](https://dev.azure.com/ofpinewood/Of%20Pine%20Wood/_build/latest?definitionId=7&branchName=master)
 [![License: MIT](https://img.shields.io/github/license/ofpinewood/opw.svg)](https://github.com/ofpinewood/opw/blob/master/LICENSE)
 
+Common packages for Of Pine Wood projects.
+
 ## Opw.Core
 [![NuGet Badge](https://img.shields.io/nuget/v/Opw.Core.svg)](https://www.nuget.org/packages/Opw.Core/)
 
@@ -11,8 +13,6 @@
 
 ## Opw.EntityFrameworkCore
 [![NuGet Badge](https://img.shields.io/nuget/v/Opw.EntityFrameworkCore.svg)](https://www.nuget.org/packages/Opw.EntityFrameworkCore/)
-
-Common packages for Of Pine Wood projects.
 
 ## Contributing
 We accept fixes and features! Here are some resources to help you get started on how to contribute code or new content.
