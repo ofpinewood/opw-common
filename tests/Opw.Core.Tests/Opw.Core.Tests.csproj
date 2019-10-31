@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Opw\Opw.csproj" />
+    <ProjectReference Include="..\..\src\Opw.Core\Opw.Core.csproj" />
   </ItemGroup>
 
 </Project>

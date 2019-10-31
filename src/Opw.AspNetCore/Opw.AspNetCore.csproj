@@ -13,9 +13,4 @@
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="4.0.1" />
     </ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\Opw.EntityFrameworkCore\Opw.EntityFrameworkCore.csproj" />
-        <ProjectReference Include="..\Opw\Opw.csproj" />
-    </ItemGroup>
-
 </Project>

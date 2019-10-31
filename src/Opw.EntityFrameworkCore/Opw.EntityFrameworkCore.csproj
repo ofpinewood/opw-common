@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Opw\Opw.csproj" />
+      <ProjectReference Include="..\Opw.Core\Opw.Core.csproj" />
     </ItemGroup>
 
 </Project>
