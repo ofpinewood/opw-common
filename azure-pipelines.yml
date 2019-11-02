@@ -13,8 +13,8 @@ trigger:
     - refs/tags/*
     
 schedules:
-- cron: '0 0 10 10 *'
-  displayName: Daily Build 
+- cron: '0 0 0 * *'
+  displayName: Daily Build
   always: true
   branches:
     include:
