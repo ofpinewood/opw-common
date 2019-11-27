@@ -1,8 +1,8 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
-using System.Data.SqlClient;
 
 namespace Opw.EntityFrameworkCore
 {

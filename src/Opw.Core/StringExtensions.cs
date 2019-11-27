@@ -35,7 +35,7 @@ namespace Opw
         /// <summary>
         /// Remove diacritics (accents) from a string
         /// </summary>
-        /// <see cref="https://stackoverflow.com/questions/249087/how-do-i-remove-diacritics-accents-from-a-string-in-net"/>
+        /// <remarks>See: https://stackoverflow.com/questions/249087/how-do-i-remove-diacritics-accents-from-a-string-in-net</remarks>
         public static string RemoveDiacritics(this string s)
         {
             var normalizedString = s.Normalize(NormalizationForm.FormD);
