@@ -22,14 +22,12 @@ schedules:
 
 variables:
   buildConfiguration: 'Release'
-  GitVersion.SemVer: ''
 
 steps:
 - task: UseGitVersion@5
   displayName: GitVersion
   inputs:
     versionSpec: '5.x'
-    updateAssemblyInfo: true
 
 # https://dotnet.microsoft.com/download/dotnet-core/3.1
 - task: UseDotNet@2
