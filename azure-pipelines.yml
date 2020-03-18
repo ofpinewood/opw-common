@@ -39,7 +39,7 @@ steps:
   displayName: Build
   inputs:
     projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration) /p:Version=$(GitVersion.AssemblySemVer)'
+    arguments: '--configuration $(buildConfiguration) /p:Version=$(GitVersion.BuildNumber)'
 
 - task: DotNetCoreCLI@2
   displayName: Test
