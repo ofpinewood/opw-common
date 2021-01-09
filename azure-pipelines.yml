@@ -11,7 +11,7 @@ trigger:
     include:
     - master
     - refs/tags/*
-    
+
 schedules:
 - cron: '0 0 * * *'
   displayName: Daily Build
@@ -35,6 +35,13 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '3.1.200'
+
+# https://dotnet.microsoft.com/download/dotnet/5.0
+- task: UseDotNet@2
+  displayName: Install .Net Core 5.0.101
+  inputs:
+    packageType: 'sdk'
+    version: '5.0.101'
 
 - task: DotNetCoreCLI@2
   displayName: Build
