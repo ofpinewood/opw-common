@@ -4,9 +4,9 @@
 
         <Authors>Of Pine Wood</Authors>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <PackageLicenseUrl>https://github.com/ofpinewood/opw-common/blob/master/LICENSE</PackageLicenseUrl>
+        <PackageLicenseUrl>https://github.com/ofpinewood/opw-common/blob/main/LICENSE</PackageLicenseUrl>
         <PackageProjectUrl>https://github.com/ofpinewood/opw-common</PackageProjectUrl>
-        <PackageIconUrl>https://github.com/ofpinewood/opw-common/blob/master/opw-logo-256x256.gif?raw=true</PackageIconUrl>
+        <PackageIconUrl>https://github.com/ofpinewood/opw-common/blob/main/opw-logo-256x256.gif?raw=true</PackageIconUrl>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/ofpinewood/opw-common</RepositoryUrl>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
