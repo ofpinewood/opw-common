@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ created ]
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '0 0 * * *'
+
+  workflow_dispatch:
+
+env:
+  buildConfiguration: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2 
+        with:
+          fetch-depth: 0
+      
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.8
+        with:
+          versionSpec: '5.x'
+      
+      - name: Determine GitVersion
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.8
+
+      # https://dotnet.microsoft.com/download/dotnet-core/3.1
+      - name: Setup .Net Core 3.1.200 LTS
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 3.1.200
+
+      # https://dotnet.microsoft.com/download/dotnet/5.0
+      - name: Setup .Net 5.0.101
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 5.0.101
+  
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration ${buildConfiguration} /p:Version=${{ steps.gitversion.outputs.semVer }}
+      
+      - name: Test
+        run: dotnet test --no-build --verbosity normal --configuration ${buildConfiguration} /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Include=[Opw.*]* /p:Exclude=[*Tests]*
+      
+      - name: Upload dotnet test results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: dotnet-results-${{ matrix.dotnet-version }}
+          path: TestResults-${{ matrix.dotnet-version }}
+      
+      - name: NuGet Pack Opw.Core
+        if: ${{ success() && github.event_name == 'release' && github.event.action == 'created' }}
+        run: dotnet pack --configuration ${buildConfiguration} '**/Opw.Core.csproj' /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersion }}
+
+      - name: NuGet Pack Opw.AspNetCore
+        if: ${{ success() && github.event_name == 'release' && github.event.action == 'created' }}
+        run: dotnet pack --configuration ${buildConfiguration} '**/Opw.AspNetCore.csproj' /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersion }}
+
+      - name: NuGet Pack Opw.EntityFrameworkCore
+        if: ${{ success() && github.event_name == 'release' && github.event.action == 'created' }}
+        run: dotnet pack --configuration ${buildConfiguration} '**/Opw.EntityFrameworkCore.csproj' /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersion }}
+      
+      # - name: NuGet Push
+      #  if: ${{ success() && github.event_name == 'release' && github.event.action == 'created' }}
+      #  run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.PUBLISH_TO_NUGET_ORG}} --skip-duplicate
+    
+      # - name: Publish the package to GPR
+      #  if: success() && github.event_name == 'release' && github.event.action == 'created'
+      #  run: dotnet nuget push <my project>/bin/${buildConfiguration}/*.nupkg
